@@ -23,7 +23,7 @@ for (i = 1; i< argc; i++) {
     // если выполняется дочерний процесс 
     // вызов функции счета количества пробелов в файле
 
-    if (execl("./child.exe", "child" ,arg, NULL)<0) {
+    if (execl("./child.exe", arg, NULL)<0) {
     printf("ERROR while start processing file %s\n",argv[i]);
     exit(-2);
     }
