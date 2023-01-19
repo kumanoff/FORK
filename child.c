@@ -7,8 +7,8 @@
 #include <locale.h>
 #include <unistd.h>// for write and read 
 int main(int argc, char* argv[]) {
-    if (argc != 3) {
-        printf("Usage: file text_file new_text_file");
+    if (argc < 2) {
+        printf("Использование: file text_file new_text_file \n");
         exit(-1);
     }
     setlocale(LC_ALL, "Rus");
