@@ -15,16 +15,16 @@ int main(int argc, char* argv[]) {
     int inputFd, outputFd, numRead, total, openFlags;
     mode_t filePerms;
     // открытие файлов ввода и вывода
-    inputFd = open(argv[1], O_RDONLY);
+    inputFd = open(argv[0], O_RDONLY);
     if (inputFd == -1) {
-        printf("Error opening file: %s!\n", argv[1]);
+        printf("Error opening file: %s!\n", argv[0]);
         exit(-2);
     }
     openFlags = O_CREAT | O_WRONLY | O_TRUNC;
     filePerms = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH | S_IWOTH;
-    outputFd = open(argv[2], openFlags, filePerms);
+    outputFd = open(argv[1], openFlags, filePerms);
     if (outputFd == -1) {
-        printf("Error opening file: %s!\n", argv[2]);
+        printf("Error opening file: %s!\n", argv[1]);
         exit(-3);
     }
     

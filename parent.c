@@ -9,7 +9,7 @@
 
 int main(int argc, char *argv[]) {
 int i, pid[argc], status, stat;
-char arg[20];
+char arg[40];
 // для всех файлов, перечисленных в командной строке 
 if (argc<2) {
     printf("Usage: file textfile1 textfile2 ...\n");
@@ -17,7 +17,10 @@ if (argc<2) {
     }
 for (i = 1; i< argc; i++) { 
    // запускаем дочерний процесс 
-   strcpy(arg,argv[i]);
+   //strcpy(arg,argv[i]);
+   sprintf(arg,"%s %s",argv[i], argv[i+1]);
+   printf("%s\n", arg);
+
    pid[i] = fork(); 
    if (pid[i] == 0) {
     // если выполняется дочерний процесс 
