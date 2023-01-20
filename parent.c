@@ -18,12 +18,9 @@ if (argc<2) {
 for (i = 1; i< argc; i++) { 
    // запускаем дочерний процесс
    if (i%2==0){
-    printf("now sleep! \n");
     sleep(1); 
    }
    strcpy(arg,argv[i]);
-   //sprintf(arg,"./child.exe %s %s",argv[i], argv[i+1]);
-   //printf("arg = %s\n", arg);
    pid[i] = fork(); 
    if (pid[i] == 0) {
     // если выполняется дочерний процесс 

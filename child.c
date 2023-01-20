@@ -9,8 +9,6 @@
 int main(int argc, char* argv[]) {
     if (argc < 1) {
         printf("Использование: file text_file new_text_file \n");
-        printf("get = %s\n", *argv);
-        //printf("number = %d\n", argc);
         exit(-1);
     }
     setlocale(LC_ALL, "Rus");
@@ -28,13 +26,11 @@ int main(int argc, char* argv[]) {
     char fname[]="out.txt";
     int i=1;
     outputFd = open(fname, O_RDONLY);
-    printf("outputFd = %d \n", outputFd);
     while (outputFd >= 0 ){
         close(outputFd);
         sprintf(fname, "out%d.txt", i);
         i++;
         outputFd = open(fname, O_RDONLY);
-        printf("outputFd_gygy = %d \n", outputFd);
     }
     close(outputFd);
     outputFd = open(fname, openFlags, filePerms);
