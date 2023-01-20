@@ -9,6 +9,9 @@
 int main(int argc, char* argv[]) {
     if (argc < 2) {
         printf("Использование: file text_file new_text_file \n");
+        printf("get = %s\n", argv[0]);
+        printf("get = %s\n", argv[1]);
+        //printf("number = %d\n", argc);
         exit(-1);
     }
     setlocale(LC_ALL, "Rus");

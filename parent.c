@@ -17,16 +17,16 @@ if (argc<2) {
     }
 for (i = 1; i< argc; i++) { 
    // запускаем дочерний процесс 
-   //strcpy(arg,argv[i]);
-   sprintf(arg,"%s %s",argv[i], argv[i+1]);
-   printf("%s\n", arg);
+   strcpy(arg,argv[i]);
+   //sprintf(arg,"./child.exe %s %s",argv[i], argv[i+1]);
+   //printf("arg = %s\n", arg);
 
    pid[i] = fork(); 
    if (pid[i] == 0) {
     // если выполняется дочерний процесс 
     // вызов функции счета количества пробелов в файле
 
-    if (execl("./child.exe", arg, NULL)<0) {
+    if (execl("./child.exe",arg, NULL)<0) {
     printf("ERROR while start processing file %s\n",argv[i]);
     exit(-2);
     }
