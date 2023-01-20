@@ -7,10 +7,9 @@
 #include <locale.h>
 #include <unistd.h>// for write and read 
 int main(int argc, char* argv[]) {
-    if (argc < 2) {
+    if (argc < 1) {
         printf("Использование: file text_file new_text_file \n");
-        printf("get = %s\n", argv[0]);
-        printf("get = %s\n", argv[1]);
+        printf("get = %s\n", *argv);
         //printf("number = %d\n", argc);
         exit(-1);
     }
@@ -25,13 +24,22 @@ int main(int argc, char* argv[]) {
     }
     openFlags = O_CREAT | O_WRONLY | O_TRUNC;
     filePerms = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH | S_IWOTH;
-    outputFd = open(argv[1], openFlags, filePerms);
-    if (outputFd == -1) {
-        printf("Error opening file: %s!\n", argv[1]);
-        exit(-3);
+
+    char fname[]="out.txt";
+    int i=1;
+    outputFd = open(fname, O_RDONLY);
+    printf("outputFd = %d \n", outputFd);
+    while (outputFd >= 0 ){
+        close(outputFd);
+        sprintf(fname, "out%d.txt", i);
+        i++;
+        outputFd = open(fname, O_RDONLY);
+        printf("outputFd_gygy = %d \n", outputFd);
     }
+    close(outputFd);
+    outputFd = open(fname, openFlags, filePerms);
     
-    //int input, int output) 
+    
      char buf;
      total = 0;
      // цикл для обработки файла
