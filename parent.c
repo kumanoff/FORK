@@ -16,21 +16,25 @@ if (argc<2) {
     exit(-1);
     }
 for (i = 1; i< argc; i++) { 
-   // запускаем дочерний процесс 
+   // запускаем дочерний процесс
+   if (i%2==0){
+    printf("now sleep! \n");
+    sleep(1); 
+   }
    strcpy(arg,argv[i]);
    //sprintf(arg,"./child.exe %s %s",argv[i], argv[i+1]);
    //printf("arg = %s\n", arg);
-
    pid[i] = fork(); 
    if (pid[i] == 0) {
     // если выполняется дочерний процесс 
     // вызов функции счета количества пробелов в файле
-
     if (execl("./child.exe",arg, NULL)<0) {
     printf("ERROR while start processing file %s\n",argv[i]);
     exit(-2);
     }
-    else printf( "processing of file %s started (pid=%d)\n", argv[i],pid[i]);
+    else {
+    printf( "processing of file %s started (pid=%d)\n", argv[i],pid[i]);
+    }
    }
     // если выполняется родительский процесс
 }
